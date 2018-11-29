@@ -15,6 +15,13 @@ def removeDuplicates(listofElements):
 
     return uniqueList
 
+def remove_fromList(list):
+    for x in list:
+        if x == tour:
+            list.remove(x)
+    return (list)
+
+
 data = open_file('data.txt')
 
 
@@ -35,16 +42,21 @@ for index,row in data.iterrows():
 
 selected_data = pd.DataFrame(l)
 
-
 tour = []
 tour = selected_data.where(selected_data[2] == min(selected_data[2])).dropna()
-tour = tour.values[0, :2].tolist()
+tour = tour.values[0, :3].tolist()
 tour = [int(i) for i in tour]
 print(tour)
 
 
-others = [x for x in cities if x not in tour]
-print(others)
+list_data = data.values.tolist()
+
+df_u = pd.DataFrame(remove_fromList(list_data))
+print(df_u)
+
+
+
+
 
 
 
