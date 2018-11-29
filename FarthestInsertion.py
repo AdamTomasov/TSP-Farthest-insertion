@@ -52,7 +52,20 @@ print(tour)
 list_data = data.values.tolist()
 
 df_u = pd.DataFrame(remove_fromList(list_data))
-print(df_u)
+tour = pd.DataFrame(tour)
+
+
+l = []
+for idx, row in df_u.iterrows():
+    if row[0] == tour[0][0] or row[0] == tour[0][1]:
+        l.append(row.tolist())
+    elif row[1] == tour[0][0] or row[1] == tour[0][1]:
+        l.append(row.tolist())
+
+df_c = pd.DataFrame(l)
+
+select_maxTour = df_c.where(df_c[2] == max(df_c[2])).dropna()
+
 
 
 
